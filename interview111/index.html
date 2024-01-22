@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./write.js" defer></script>
+    <style>
+        /* .container {
+            width: 300px;
+            height: 100px;
+            border: 1px solid;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .box {
+            width: 33.33%;
+            height: 100px;
+            background: red;
+            margin-left: 10px;
+        }
+        .box:nth-child(1){
+            margin-left: 0;
+        } */
+        .container {
+            width: 300px;
+            height: 100px;
+            border: 1px solid;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-column-gap: 10px;
+        }
+
+        .box {
+            /* height: 100px; */
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+    <script>
+        // 'use strict';
+        "use strict";
+        console.log(this)
+        console.log('[ globalThis ]', globalThis)
+        console.log(this === window)
+        // 　　v = 1; // 报错，v未声明
+
+        for (i = 0; i < 2; i++) { // 报错，i未声明
+        }
+
+        // var a = 10;
+        // let b = 20;
+
+        // function foo() {
+        //     console.log('[ globalThis ]', globalThis)
+        //     console.log('this1', this)
+        //     console.log('window.a', window.a)
+        //     console.log('window.b', window.b)
+        //     console.log(this.a)
+        // }
+        // foo();
+    </script>
+</body>
+
+</html>

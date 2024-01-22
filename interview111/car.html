@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    .cont{width: 1000px;border: solid 1px black;margin: 0 auto;overflow: hidden;}
+    .cont .box{float: left;border: solid 1px black;box-sizing: border-box;width: 250px;}
+    .cont .box>img{width: 80%;height:200px;display: block;margin: 4px auto;}
+    .cont .box .imgs{width: 100%;height: 40px;}
+    .cont .box .imgs img{width: 40px;height:40px;float: left;}
+    .cont p{margin: 5px 0;}
+    .cont p:nth-of-type(1){height: 40px;line-height: 20px;overflow: hidden;}
+    .cont .tags{width: 100%;height: 20px;}
+    .cont .tags span{float: left;margin: 0 2px;padding: 2px;font-size: 12px;color: #fff;}
+
+    tbody img{width: 40px;height: 40px;}
+    tbody input{width: 40px;}
+  </style>
+</head>
+<body>
+  <div class="cont"></div>
+
+  <table width="700" border="1">
+    <thead>
+      <tr>
+        <th>全选</th>
+        <th>图片</th>
+        <th>名称</th>
+        <th>数量</th>
+        <th>价格</th>
+        <th>小计</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+    </tbody>
+    <tfoot>
+      <tr>
+        <th colspan="2"><input type="checkbox" id="allCheck"><label for="allCheck">全选</label></th>
+        <th align="right">总数量：</th>
+        <th id="sum">0</th>
+        <th align="right">总价：</th>
+        <th id="sumPrice">0</th>
+        <th>删除全部</th>
+      </tr>
+    </tfoot>
+  </table>
+</body>
+<script>
+    class ShoppingCart {
+        constructor() {
+            this.cont = document.querySelector(".cont");
+            this.tbody = document.querySelector("tbody");
+            this.cartData = [];
+            this.allCheck = document.querySelector("#allCheck");
+            this.sumElement = document.querySelector("#sum");
+            this.sumPriceElement = document.querySelector("#sumPrice");
+            this.init();
+        }
+
+        init() {
+            setTimeout(() => {
+                const str = this.renderGoods();
+                this.cont.innerHTML = str;
+            }, 1);
+
+            this.cont.onclick = (eve) => {
+                if (eve.target.className === "addCart") {
+                    const id = eve.target.parentNode.dataset.id;
+                    const flag = this.checkIfProductExists(id);
+                    if (flag) {
+                        this.cartData[flag.index].num++;
+                    } else {
+                        const price = this.getProductPrice(id);
+                        this.cartData.push({
+                            id,
+                            num: 1,
+                            checked: false,
+                            price
+                        });
+                    }
+                }
+
+                this.renderCart();
+            };
+
+            this.tbody.addEventListener("change", (eve) => {
+                if (eve.target.className === "check") {
+                    const checked = eve.target.checked;
+                    const id = eve.target.parentNode.parentNode.dataset.id;
+                    this.syncProductState(id, checked);
+                    this.syncAllCheckState();
+                    this.calculateTotal();
+                }
+            });
+
+            this.allCheck.onchange = () => {
+                const checked = this.allCheck.checked;
+                this.syncCartState(checked);
+                this.syncAllProductState(checked);
+                this.calculateTotal();
+            };
+        }
+
+        renderGoods() {
+            let str = "";
+            for (let i = 0; i < goods.length; i++) {
+                str += `<div class="box" data-id="${goods[i].id}">
+                <img src="${goods[i].imgs}" alt="">
+                <p>${goods[i].name}</p>
+                <p>价格：${goods[i].price}</p>
+                <input type="button" class="addCart" value="加入购物车">
+            </div>`;
+            }
+            return str;
+        }
+
+        checkIfProductExists(id) {
+            let index = -1;
+            const flag = this.cartData.some((val, idx) => {
+                index = idx;
+                return val.id === id;
+            });
+            return flag ? {
+                index
+            } : null;
+        }
+
+        getProductPrice(id) {
+            let price = 0;
+            goods.some((val) => {
+                price = val.price;
+                return val.id === id;
+            });
+            return price;
+        }
+
+        renderCart() {
+            let str = "";
+            goods.forEach((val) => {
+                this.cartData.forEach((val2) => {
+                    if (val.id === val2.id) {
+                        str += `<tr data-id="${val.id}">
+                    <td><input type="checkbox" class="check" ${
+            val2.checked ? "checked" : ""
+          }></td>
+                    <td><img src="${val.imgs}" alt=""></td>
+                    <td>${val.name}</td>
+                    <td><input type="number" value="${val2.num}"></td>
+                    <td>${val.price}</td>
+                    <td>${val.price * val2.num}</td>
+                    <td>删除</td>
+                  </tr>`;
+                    }
+                });
+            });
+            this.tbody.innerHTML = str;
+            this.syncAllCheckState();
+            this.calculateTotal();
+        }
+
+        syncProductState(id, checked) {
+            this.cartData.forEach((val) => {
+                if (val.id === id) {
+                    val.checked = checked;
+                }
+            });
+        }
+
+        syncAllCheckState() {
+            this.allCheck.checked = this.cartData.every((val) => val.checked);
+        }
+
+        syncCartState(checked) {
+            this.cartData.forEach((val) => {
+                val.checked = checked;
+            });
+        }
+
+        syncAllProductState(checked) {
+            const checks = document.querySelectorAll(".check");
+            [...checks].forEach((val) => {
+                val.checked = checked;
+            });
+        }
+
+        calculateTotal() {
+            const sum = this.cartData.reduce(
+                (prev, val) => prev + (val.checked ? val.num : 0),
+                0
+            );
+            const sumPrice = this.cartData.reduce(
+                (prev, val) => prev + (val.checked ? val.num * val.price : 0),
+                0
+            );
+            this.sumElement.innerHTML = sum;
+            this.sumPriceElement.innerHTML = sumPrice;
+        }
+    }
+
+    const shoppingCart = new ShoppingCart();
+</script>

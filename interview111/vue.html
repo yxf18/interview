@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div>
+        我的名字是：<input type="text" id="name">
+    </div>
+    <div class="box">
+        <p>{{name}}</p>
+    </div>
+</body>
+<script>
+
+    vue({
+        el: ".box",
+        data: {
+            name: "admin",
+            age: 18,
+            sex: "男",
+            msg: "helloworld"
+        }
+    });
+
+    function vue(ops) {
+        const obj = ops.data;
+
+        const result = new Proxy(obj, {
+            get(target, attr) {
+                return target[attr];
+            },
+            set(target, attr, data) {
+                target[attr] = data;
+                render(str)
+            }
+        })
+        const inputName = document.getElementById("name");
+
+        /********** add ************/
+        inputName.oninput = function (e) {
+            result.name = e.target.value;
+        }
+        /**********************/
+        const box = document.querySelector(ops.el);
+        let str = box.innerHTML;
+        const reg = /{{\s*[\w$]+\s*}}/g;
+        const reg2 = /[a-z_$][\w$]*/g
+
+        function render(str) {
+            let arr = str.match(reg)
+            arr.forEach(val => {
+                /********* obj -> result **********/
+                str = str.replace(val, result[val.match(reg2)[0]])
+            })
+
+            box.innerHTML = str;
+        }
+    }
+</script>
+
+</html>

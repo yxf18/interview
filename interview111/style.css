@@ -1,0 +1,34 @@
+/* 假设 container 为父元素，box为子元素 */
+
+/* 1. grid布局（有兼容性问题） */
+.container{
+    display: grid;
+    place-content: center;
+}
+/* 2. flex布局 */
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* 3. 定位 */
+.container{
+    position: relative;
+
+}
+.container .box{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto
+}
+
+/* 4. 如果已知box宽高 假如宽高100px */
+.box{
+    position: absolute;
+    /* margin-left: calc(50% - 50px); */
+    /* transform: translate(50%-50px,50%-50px); */
+}
+
