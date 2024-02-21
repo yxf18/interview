@@ -1,0 +1,33 @@
+<!-- test.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+  </head>
+
+  <body>
+    <div class="test1">test1</div>
+    <div id="hello"></div>
+    <script>
+      // 待defer脚本下载完成后响应
+      function alertMsg() {
+        alert("123");
+      }
+    </script>
+    <input type="button" id="button1" onclick="alertMsg()" />
+    <!-- <script src="./index.js" defer></script> -->
+    <script src="./index.js"></script>
+    <div class="test2">test2</div>
+  </body>
+  <style>
+    .test1 {
+      color: red;
+      font-size: 50px;
+    }
+
+    .test2 {
+      color: yellow;
+      font-size: 50px;
+    }
+  </style>
+</html>
