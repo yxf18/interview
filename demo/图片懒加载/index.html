@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lazy Loading Images</title>
+    <style>
+      /* 设置占位符样式 */
+      .placeholder {
+        width: 100vw;
+        height: 100vh;
+        background-color: #ccc;
+        margin-bottom: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 图片懒加载 -->
+    <div class="container">
+      <img class="placeholder" data-src="https://pic.netbian.com/uploads/allimg/180826/113958-153525479855be.jpg"/>
+      <img class="placeholder" data-src="https://pic.netbian.com/uploads/allimg/231019/212949-16977221899ff1.jpg"/>
+      <img class="placeholder" data-src="https://pic.netbian.com/uploads/allimg/240219/103709-17083102290f5a.jpg"/>
+      <img class="placeholder" data-src="https://pic.netbian.com/uploads/allimg/240203/123231-1706934751ae7c.jpg"/>
+      <img class="placeholder" data-src="https://pic.netbian.com/uploads/allimg/240203/120549-170693314944d5.jpg"/>
+      <img class="placeholder" data-src="https://pic.netbian.com/uploads/allimg/240122/002606-1705854366a704.jpg"/>
+      <img class="placeholder" data-src="https://pic.netbian.com/uploads/allimg/240118/223027-1705588227e11f.jpg"/>
+      <img class="placeholder" data-src="https://pic.netbian.com/uploads/allimg/240117/004243-1705423363684d.jpg"/>
+      <img class="placeholder" data-src="https://pic.netbian.com/uploads/allimg/240215/150742-1707980862ed7d.jpg"/>
+      <img class="placeholder" data-src="https://pic.netbian.com/uploads/allimg/170609/123945-14969831856c4d.jpg"/>
+    </div>
+
+    <script>
+      // 获取所有带有懒加载标记的图片元素
+      const lazyImages = document.querySelectorAll(".placeholder");
+
+      // 创建 Intersection Observer 实例
+      const observer = new IntersectionObserver((entries) => {
+        // entries 是一个 IntersectionObserverEntry 对象数组
+        // 遍历每个 entry 判断是否在视口中
+        entries.forEach((entry) => {
+          // 如果 entry 在视口中
+          if (entry.isIntersecting) {
+            // 获取 data-src 属性中的真实图片地址
+            const realSrc = entry.target.getAttribute("data-src");
+            // 将真实图片地址赋值给 src 属性，触发图片加载
+            entry.target.src = realSrc;
+            // 图片加载后，不再监听
+            observer.unobserve(entry.target);
+          }
+        });
+      });
+
+      // 遍历所有带有懒加载标记的图片元素，开始监听
+      lazyImages.forEach((image) => {
+        observer.observe(image);
+      });
+    </script>
+  </body>
+</html>
