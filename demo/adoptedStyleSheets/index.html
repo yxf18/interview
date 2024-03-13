@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adopted Style Sheets 示例</title>
+    <style>
+      body .container {
+        background-color: lightgreen;
+      }
+
+      .container {
+        background-color: pink;
+        padding: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>adoptedStyleSheets动态插入样式</h1>
+    <div class="container">
+      <h1>Hello, World!</h1>
+    </div>
+
+    <img src="./demo.png" alt="" srcset="" />
+
+    <script>
+      // 创建一个新的 CSSStyleSheet 对象
+      const styleSheet = new CSSStyleSheet();
+
+      // 定义样式规则
+      styleSheet.replaceSync(
+        ".container { background-color: lightblue; padding: 20px; } h1 { color: navy; }"
+      );
+
+      // 将样式表应用到文档
+      document.adoptedStyleSheets = [styleSheet];
+    </script>
+  </body>
+</html>
