@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 实现exec函数
+      function exec(code) {}
+      exec("console.log('Hello, World!')");
+
+      // 1. eval
+      // function exec(code) {
+      //   eval(code);
+      // }
+
+      // 2. setTimeout
+      //   function exec(code) {
+      //     setTimeout(code);
+      //   }
+
+      // 3. script
+      //   function exec(code) {
+      //     const script = document.createElement("script");
+      //     script.text = code;
+      //     document.body.appendChild(script);
+      //   }
+
+      // 4. new Function
+    //   function exec(code) {
+    //     new Function(code)();
+    //   }
+    </script>
+  </body>
+</html>
