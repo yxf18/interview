@@ -1,0 +1,24 @@
+{
+  "name": "interview",
+  "version": "1.0.0",
+  "description": "npm v3的时候出的Yarn包管理器\r Yarn解决了npm存在的问题，具体如下：\r - 确定性: 通过lockfile确保安装的包的版本是确定的,无论安装顺序如何，相同的依赖关系在任何机器和环境下都可以以相同的方式被安装。\r - 采用模块扁平安装模式: 将不同版本的依赖包按照一定策略归纳为单个版本依赖包，以避免创建多个副本造成冗余(npm目前也有相同的优化成果)。\r - 网络性能更好: Yarn采用请求排队的历年，类似于并发连接池，能够更好的利用网络资源，同时引入了安装失败时的重试机制。\r - 采用缓存机制，实现了离线模式: Yarn会缓存所有下载过的包，下次安装时直接从缓存中读取，提高了安装速度。(npm目前也有类似的实现)。",
+  "main": "000test.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yxf18/interview.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yxf18/interview/issues"
+  },
+  "homepage": "https://github.com/yxf18/interview#readme",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
