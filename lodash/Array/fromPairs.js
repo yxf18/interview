@@ -1,6 +1,7 @@
 /*
  * @Author: yangxuefeng yangxuefeng@clinbrain.com
- * @Description:
+ * @Description: 此方法返回一个由 key-value 组成的对象pairs。
+ * @effect:【键值对转对象】
  */
 import _ from "lodash";
 {

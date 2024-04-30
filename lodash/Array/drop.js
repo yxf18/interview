@@ -1,6 +1,7 @@
 /*
  * @Author: yangxuefeng yangxuefeng@clinbrain.com
  * @Description: 创建一个从头开始删除元素的array切片
+ * @effect:【切片-从头部开始】
  */
 import _ from "lodash";
 /* ================== drop ================== */

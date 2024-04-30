@@ -1,6 +1,7 @@
 /*
  * @Author: yangxuefeng yangxuefeng@clinbrain.com
  * @Description: 创建一个包含在所有给定数组中的唯一值数组，用于SameValueZero相等比较。结果值的顺序和引用由第一个数组确定
+ * @effect:【求交集】 与 difference 相反
  */
 import _ from "lodash";
 /* ================== intersection ================== */

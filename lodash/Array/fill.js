@@ -1,6 +1,7 @@
 /*
  * @Author: yangxuefeng yangxuefeng@clinbrain.com
  * @Description: array用valuefrom up to填充 的元素start，但不包括end。
+ * @effect:【填充】
  */
 import _ from "lodash";
 var array = [1, 2, 3];

@@ -1,6 +1,7 @@
 /*
  * @Author: yangxuefeng yangxuefeng@clinbrain.com
  * @Description: 扁平化
+ * @effect:【扁平化】
  */
 import _ from "lodash";
 /* ================== flatten ================== */

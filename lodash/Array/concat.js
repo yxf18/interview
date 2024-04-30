@@ -1,6 +1,7 @@
 /*
  * @Author: yangxuefeng yangxuefeng@clinbrain.com
  * @Description: array创建一个与任何其他数组和/或值连接的新数组。
+ * @effect:【拼接】
  */
 import _ from "lodash";
 

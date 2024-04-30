@@ -1,6 +1,7 @@
 /*
  * @Author: yangxuefeng yangxuefeng@clinbrain.com
  * @Description: array创建一个未包含在其他给定数组中的值数组，SameValueZero用于相等比较。结果值的顺序和引用由第一个数组确定。
+ * @effect:【求差集-相对第一个数组】
  */
 
 import _ from "lodash";
@@ -9,7 +10,7 @@ import _ from "lodash";
 注意：与 不同_.pullAll，此方法返回一个新数组。 */
 {
   const arr = _.difference([2, 1], [2, 3]);
-  console.log(arr);
+  console.log(arr); // => [1]
 }
 
 /* ================== differenceBy ================== */
@@ -19,9 +20,9 @@ import _ from "lodash";
 注意：与 不同_.pullAllBy，此方法返回一个新数组。 */
 {
   const arr1 = _.differenceBy([2.1, 1.2], [2.3, 3.4], Math.floor);
-  console.log(arr1);
+  console.log(arr1); // => [1.2]
   const arr2 = _.differenceBy([{ x: 2 }, { x: 1 }], [{ x: 1 }], "x");
-  console.log(arr2);
+  console.log(arr2); // => [{ 'x': 2 }]
 }
 
 /* ================== differenceWith ================== */
@@ -36,5 +37,5 @@ import _ from "lodash";
   ];
 
   const arr = _.differenceWith(objects, [{ x: 1, y: 2 }], _.isEqual);
-  console.log("[ differenceWith ]", arr);
+  console.log("[ differenceWith ]", arr); // => [{ x: 2, y: 1 }]
 }

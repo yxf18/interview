@@ -1,6 +1,7 @@
 /*
  * @Author: yangxuefeng yangxuefeng@clinbrain.com
  * @Description: 创建一个元素数组，分为长度为 的组size。如果array不能均匀分割，则最终的块将是剩余的元素。
+ * @effect:【分片】
  */
 
 import _ from "lodash";
