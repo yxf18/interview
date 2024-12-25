@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BFC</title>
+    <style>
+      ul {
+        width: 500px;
+        background: yellow;
+        list-style: none;
+        padding: 0;
+      }
+      /* 解决父元素和第一个/最后一个子元素之间margin合并 */
+      ul {
+        /* overflow: hidden; 1*/
+        /* position: absolute; 2*/
+        /* border: 1px solid; 3 */
+        /* height: 600px; 适用于最后一个子元素的margin合并 */
+      }
+      /* 解决相邻元素垂直方向的margin合并问题 */
+      ul {
+        /* display: flex; */
+        /* flex-flow: row wrap; */
+      }
+      li {
+        width: 90%;
+        height: 100px;
+        margin: 50px auto;
+        /* padding: 50px auto; 使用padding代替margin */
+        background: pink;
+      }
+    </style>
+  </head>
+  <body>
+    <mark
+      >margin只有上下方向会发生合并<br />
+      合并原则: 正正取最大，负负取最负，正负就相加
+    </mark>
+
+    <ul>
+      <li>1 高100px</li>
+      <li>2</li>
+      <li></li>
+      <li>3</li>
+      <li>4</li>
+    </ul>
+  </body>
+</html>
