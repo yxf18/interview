@@ -10,5 +10,5 @@ function unique1(arr) {
 }
 console.log('[ unique1(array) ]', unique1(array))
 
-// 3. 利用对象或者数组
+// 3. 利用对象或者数组，includes
 // @interview end
